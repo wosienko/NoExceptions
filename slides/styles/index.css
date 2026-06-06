@@ -1,26 +1,37 @@
 /*
  * Slidev renders each slide in a fixed-size canvas (.slidev-slide-content)
- * with overflow:hidden. Pad the page wrapper (not .slidev-layout) so inset
- * is real, and allow vertical scroll when content exceeds the canvas.
+ * with overflow:hidden. Let .slidev-page scroll when content exceeds the canvas,
+ * and stop .slidev-layout h-full from capping scrollable height.
  */
 .slidev-page {
   box-sizing: border-box;
-  padding: 2.5rem;
   overflow-x: hidden;
   overflow-y: auto;
-}
-
-.slidev-layout {
-  min-height: 0;
 }
 
 .slidev-layout.default,
 .slidev-layout.two-columns,
 .slidev-layout.two-cols-header {
-  height: 100%;
+  height: auto;
+  min-height: 100%;
 }
 
-/* Avoid clipping inline-code descenders at the bottom edge */
-.slidev-page :is(p, li) {
-  line-height: 1.6;
+.slidev-layout.two-columns {
+  align-items: start;
+}
+
+.slidev-layout :is(p, li) {
+  line-height: 1.5;
+}
+
+/* Slightly denser code blocks — many slides pair a title with 20+ lines */
+:root {
+  --slidev-code-font-size: 11px;
+  --slidev-code-line-height: 16px;
+  --slidev-code-padding: 6px;
+}
+
+.slidev-code-wrapper {
+  max-height: min(52vh, 420px);
+  overflow-y: auto;
 }

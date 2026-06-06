@@ -18,6 +18,7 @@ Handler rewires `CONTEXT` — no inline hook on `ntdll` export.
 
 ---
 layout: default
+zoom: 0.9
 ---
 
 # Vectored syscall — `08-vectored-syscall`
@@ -53,11 +54,21 @@ Decoy SSN in `Rax` — VEH patches real SSN and Win64 args before kernel entry.
 
 ---
 layout: default
+zoom: 0.9
 ---
 
-# HWBP syscall — `09-hwbp-syscall`
+# HWBP syscall — handler (`09-hwbp-syscall`)
 
-<<< @/../snippets/09-hwbp-syscall/src/main.zig {109-195}
+<<< @/../snippets/09-hwbp-syscall/src/main.zig {109-139}
+
+---
+layout: default
+zoom: 0.85
+---
+
+# HWBP syscall — setup + call
+
+<<< @/../snippets/09-hwbp-syscall/src/main.zig {141-175}
 
 ```powershell
 cd snippets/09-hwbp-syscall

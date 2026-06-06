@@ -30,6 +30,7 @@ Most teaching demos: log → patch `Rip` → `EXCEPTION_CONTINUE_EXECUTION`.
 ---
 layout: two-cols
 layoutClass: gap-8
+zoom: 0.9
 ---
 
 # Divide-by-zero teaching fault

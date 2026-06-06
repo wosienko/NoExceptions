@@ -39,6 +39,11 @@ flowchart LR
 
 Registration order with `First=1` prepends — **last registered runs first**.
 
-Optional reference — `02-veh-chain`:
+---
+layout: default
+zoom: 0.9
+---
+
+# VEH chain — `02-veh-chain`
 
 <<< @/../snippets/02-veh-chain/src/main.zig {20-38}

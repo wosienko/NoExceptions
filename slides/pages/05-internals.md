@@ -16,6 +16,7 @@ Three instructions — all work happens in `RtlpAddVectoredHandler`.
 
 ---
 layout: default
+zoom: 0.95
 ---
 
 # `RtlpAddVectoredHandler` flow

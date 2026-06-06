@@ -33,7 +33,14 @@ layout: default
 
 CFG-aware path: mrdata heap alloc → `EncodePointer` → SRW lock → list splice → `FlipBit(PROCESS_USING_VEH)`.
 
-<<< @/../snippets/05-local-veh-manip/src/main.zig {77-161}
+---
+layout: default
+zoom: 0.85
+---
+
+# Manual splice — lock + list insert
+
+<<< @/../snippets/05-local-veh-manip/src/main.zig {121-160}
 
 ```powershell
 cd snippets/05-local-veh-manip

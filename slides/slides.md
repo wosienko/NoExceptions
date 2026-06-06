@@ -3,6 +3,7 @@ theme: seriph
 title: No Exceptions - Vectored Exception Handling
 transition: slide-left
 duration: 30min
+css: ./styles/index.css
 src: ./pages/01-intro.md
 ---
 
