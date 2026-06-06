@@ -1,0 +1,7 @@
+.{
+    .name = .hwbp_syscall,
+    .version = "0.0.0",
+    .fingerprint = 0x89309199bced5ed2,
+    .minimum_zig_version = "0.16.0",
+    .paths = .{ "build.zig", "build.zig.zon", "src" },
+}
