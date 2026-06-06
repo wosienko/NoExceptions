@@ -1,0 +1,7 @@
+.{
+    .name = .veh_shared,
+    .version = "0.0.0",
+    .fingerprint = 0x7af42e0a6aa74867,
+    .minimum_zig_version = "0.16.0",
+    .paths = .{ "build.zig", "build.zig.zon", "src" },
+}
