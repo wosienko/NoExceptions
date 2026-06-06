@@ -66,6 +66,27 @@ pub fn getLdrEnsureMrdataHeapExists(ntdll: ?*anyopaque) ?LdrEnsureMrdataHeapExis
     }
 }
 
+pub fn flipProcessUsingVehBit() void {
+    const teb: usize = asm volatile (
+        \\ movq %%gs:0x60, %[out]
+        : [out] "=r" (-> usize),
+    );
+    const peb: usize = asm volatile (
+        \\ movq 0x60(%[teb]), %[out]
+        : [out] "=r" (-> usize),
+        : [teb] "r" (teb),
+    );
+    asm volatile (
+        \\ xorl $0x4, 0x50(%[peb])
+        :
+        : [peb] "r" (peb),
+    );
+}
+
+pub fn callLdrProtectMrdata(fn_ptr: LdrProtectMrdataFn, protect: bool) void {
+    fn_ptr(if (protect) 1 else 0);
+}
+
 fn readU8(addr: usize) u8 {
     return @as(*const u8, @ptrFromInt(addr)).*;
 }
