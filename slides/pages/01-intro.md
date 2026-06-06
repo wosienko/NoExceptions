@@ -15,7 +15,7 @@ layout: default
 
 # Windows exception dispatch
 
-```mermaid {scale: 0.85}
+```mermaid {scale: 0.7}
 flowchart TD
     A[CPU fault] --> B[KiDispatchException]
     B --> C[VEH chain]
@@ -44,11 +44,11 @@ layout: default
 
 # CONTEXT (x64) — fields we touch
 
-| Field | Role in handlers |
-|-------|------------------|
+| Field | Role in handlers                                                         |
+| ----- | ------------------------------------------------------------------------ |
 | `Rip` | Resume address — advance to skip faulting insn, or redirect to `syscall` |
-| `Rax` | Return value / syscall number (`SSN`) |
-| `R10` | Syscall arg0 (`RCX` is clobbered by `syscall`) |
-| `Rcx` | 1st arg in Win64 calling convention; source for `R10` at syscall |
+| `Rax` | Return value / syscall number (`SSN`)                                    |
+| `R10` | Syscall arg0 (`RCX` is clobbered by `syscall`)                           |
+| `Rcx` | 1st arg in Win64 calling convention; source for `R10` at syscall         |
 
 Offensive sections reuse these fields to tamper with execution at exception time.

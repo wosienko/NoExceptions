@@ -1,0 +1,26 @@
+/*
+ * Slidev renders each slide in a fixed-size canvas (.slidev-slide-content)
+ * with overflow:hidden. Pad the page wrapper (not .slidev-layout) so inset
+ * is real, and allow vertical scroll when content exceeds the canvas.
+ */
+.slidev-page {
+  box-sizing: border-box;
+  padding: 2.5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.slidev-layout {
+  min-height: 0;
+}
+
+.slidev-layout.default,
+.slidev-layout.two-columns,
+.slidev-layout.two-cols-header {
+  height: 100%;
+}
+
+/* Avoid clipping inline-code descenders at the bottom edge */
+.slidev-page :is(p, li) {
+  line-height: 1.6;
+}
