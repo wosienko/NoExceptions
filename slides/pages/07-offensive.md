@@ -30,7 +30,7 @@ cd snippets/08-vectored-syscall
 zig build run
 ```
 
-Benign `NtClose` only — SSN resolved dynamically, no shellcode.
+Benign `NtAllocateVirtualMemory` — small RW allocation, SSN resolved dynamically, no shellcode.
 
 <!-- capture output before talk -->
 

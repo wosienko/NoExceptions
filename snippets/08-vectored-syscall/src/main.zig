@@ -16,7 +16,17 @@ extern "kernel32" fn AddVectoredExceptionHandler(
 ) callconv(.winapi) veh.PVOID;
 extern "kernel32" fn RemoveVectoredExceptionHandler(handle: veh.PVOID) callconv(.winapi) veh.ULONG;
 
-const NtCloseFn = *const fn (handle: veh.PVOID) callconv(.winapi) veh.NTSTATUS;
+const MEM_COMMIT_RESERVE: u32 = 0x3000;
+const PAGE_READWRITE: u32 = 0x04;
+
+const NtAllocateVirtualMemoryFn = *const fn (
+    process_handle: veh.PVOID,
+    base_address: *veh.PVOID,
+    zero_bits: usize,
+    region_size: *usize,
+    allocation_type: u32,
+    protect: u32,
+) callconv(.winapi) veh.NTSTATUS;
 
 var g_syscall_addr: usize = 0;
 
@@ -40,18 +50,36 @@ pub fn main() !void {
     const syscall_stub = syscall_resolve.findSyscallStub(ntdll) orelse return error.SyscallStubNotFound;
     g_syscall_addr = syscall_stub;
 
-    const ssn = try syscall_resolve.resolveSsnByName(ntdll, "NtClose");
+    const ssn = try syscall_resolve.resolveSsnByName(ntdll, "NtAllocateVirtualMemory");
     std.debug.print("[i] syscall stub @ 0x{x}\n", .{syscall_stub});
-    std.debug.print("[i] NtClose SSN = 0x{x}\n", .{ssn});
+    std.debug.print("[i] NtAllocateVirtualMemory SSN = 0x{x}\n", .{ssn});
 
     const veh_handle = AddVectoredExceptionHandler(1, &handleException) orelse {
         return error.VehRegistrationFailed;
     };
     defer _ = RemoveVectoredExceptionHandler(veh_handle);
 
-    const pNtClose: NtCloseFn = @ptrFromInt(@as(usize, ssn));
-    const invalid_handle: veh.PVOID = @ptrFromInt(std.math.maxInt(usize));
-    const status = pNtClose(invalid_handle);
-    std.debug.print("[+] NtClose status: 0x{x}\n", .{@as(u32, @bitCast(status))});
+    var base_address: veh.PVOID = null;
+    var region_size: usize = 0x100;
+    const pseudo_current_process: veh.PVOID = @ptrFromInt(std.math.maxInt(usize));
+
+    const pNtAllocateVirtualMemory: NtAllocateVirtualMemoryFn = @ptrFromInt(@as(usize, ssn));
+    const status = pNtAllocateVirtualMemory(
+        pseudo_current_process,
+        &base_address,
+        0,
+        &region_size,
+        MEM_COMMIT_RESERVE,
+        PAGE_READWRITE,
+    );
+
+    std.debug.print("[+] NtAllocateVirtualMemory status: 0x{x}\n", .{@as(u32, @bitCast(status))});
+    std.debug.print("[i] BaseAddress: 0x{x}\n", .{if (base_address) |ptr| @intFromPtr(ptr) else 0});
+    std.debug.print("[i] RegionSize: 0x{x}\n", .{region_size});
+
+    if (!veh.NT_SUCCESS(status)) {
+        return error.NtAllocateVirtualMemoryFailed;
+    }
+
     std.debug.print("[ok] vectored syscall redirection executed\n", .{});
 }
