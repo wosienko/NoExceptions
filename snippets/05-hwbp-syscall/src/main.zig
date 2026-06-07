@@ -139,7 +139,7 @@ fn singleStepHandler(info: *win32.EXCEPTION_POINTERS) callconv(.winapi) veh.LONG
 }
 
 pub fn main() !void {
-    std.debug.print("09-hwbp-syscall\n", .{});
+    std.debug.print("05-hwbp-syscall\n", .{});
     std.debug.print("===============\n", .{});
 
     const ntdll = GetModuleHandleA("ntdll.dll") orelse return error.NtdllNotLoaded;

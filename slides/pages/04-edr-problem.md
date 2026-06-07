@@ -8,8 +8,7 @@ Security products register `AddVectoredExceptionHandler(1, …)` to observe **ev
 
 - Log exception code, faulting address, thread context
 - Return `EXCEPTION_CONTINUE_SEARCH` — transparent to the app
-- Some products **rewrite** other handlers' `First` flag to `0` (demote to tail)
-- `OverwriteFirstVectoredExceptionHandler` — replace first entry's encoded pointer (see `05-local-veh-manip`)
+- Cheap, in-process telemetry without kernel callbacks or hooks on `RtlDispatchException`
 
 ---
 layout: default

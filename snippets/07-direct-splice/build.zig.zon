@@ -1,7 +1,0 @@
-.{
-    .name = .direct_splice,
-    .version = "0.0.0",
-    .fingerprint = 0x4cb6b58744d7efd3,
-    .minimum_zig_version = "0.16.0",
-    .paths = .{ "build.zig", "build.zig.zon", "src" },
-}

@@ -21,12 +21,12 @@ layout: default
 zoom: 0.9
 ---
 
-# Vectored syscall — `08-vectored-syscall`
+# Vectored syscall — `04-vectored-syscall`
 
-<<< @/../snippets/08-vectored-syscall/src/main.zig {23-56}
+<<< @/../snippets/04-vectored-syscall/src/main.zig {23-56}
 
 ```powershell
-cd snippets/08-vectored-syscall
+cd snippets/04-vectored-syscall
 zig build run
 ```
 
@@ -57,9 +57,9 @@ layout: default
 zoom: 0.9
 ---
 
-# HWBP syscall — handler (`09-hwbp-syscall`)
+# HWBP syscall — handler (`05-hwbp-syscall`)
 
-<<< @/../snippets/09-hwbp-syscall/src/main.zig {109-139}
+<<< @/../snippets/05-hwbp-syscall/src/main.zig {109-139}
 
 ---
 layout: default
@@ -68,10 +68,10 @@ zoom: 0.85
 
 # HWBP syscall — setup + call
 
-<<< @/../snippets/09-hwbp-syscall/src/main.zig {141-175}
+<<< @/../snippets/05-hwbp-syscall/src/main.zig {141-175}
 
 ```powershell
-cd snippets/09-hwbp-syscall
+cd snippets/05-hwbp-syscall
 zig build run
 ```
 

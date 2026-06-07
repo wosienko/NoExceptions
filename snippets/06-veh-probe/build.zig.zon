@@ -1,7 +1,0 @@
-.{
-    .name = .veh_probe,
-    .version = "0.0.0",
-    .fingerprint = 0xa94620b955a6ad32,
-    .minimum_zig_version = "0.16.0",
-    .paths = .{ "build.zig", "build.zig.zon", "src" },
-}

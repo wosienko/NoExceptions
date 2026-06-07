@@ -43,7 +43,7 @@ fn handleException(info: *win32.EXCEPTION_POINTERS) callconv(.winapi) veh.LONG {
 }
 
 pub fn main() !void {
-    std.debug.print("08-vectored-syscall\n", .{});
+    std.debug.print("04-vectored-syscall\n", .{});
     std.debug.print("===================\n", .{});
 
     const ntdll = GetModuleHandleA("ntdll.dll") orelse return error.NtdllNotFound;
