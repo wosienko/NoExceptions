@@ -49,13 +49,13 @@ All snippets share Win32/VEH helpers from [`snippets/_shared/`](snippets/_shared
 
 ### Snippet overview
 
-| #   | Directory             | Topic                                                |
-| --- | --------------------- | ---------------------------------------------------- |
-| 01  | `01-basic-veh`        | Basic VEH handler — divide-by-zero, advance `Rip`    |
-| 02  | `02-veh-chain`        | Handler dispatch order                               |
-| 03  | `03-veh-spy`          | EDR-style spy handler (observe, pass through)        |
-| 04  | `04-vectored-syscall` | VEH-PoC-style AV → syscall stub redirection          |
-| 05  | `05-hwbp-syscall`     | Hardware breakpoint single-step CONTEXT patch        |
+| #   | Directory             | Topic                                             |
+| --- | --------------------- | ------------------------------------------------- |
+| 01  | `01-basic-veh`        | Basic VEH handler — divide-by-zero, advance `Rip` |
+| 02  | `02-veh-chain`        | Handler dispatch order                            |
+| 03  | `03-veh-spy`          | EDR-style spy handler (observe, pass through)     |
+| 04  | `04-vectored-syscall` | Access Violation → syscall stub redirection       |
+| 05  | `05-hwbp-syscall`     | Hardware breakpoint single-step CONTEXT patch     |
 
 For live-demo order and expected output, see [`snippets/DEMO_ORDER.md`](snippets/DEMO_ORDER.md).
 
